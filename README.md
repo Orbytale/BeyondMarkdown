@@ -79,7 +79,7 @@ When selecting to format content inside specific tags, you can define your custo
 
 ## Support
 
-Encountered a bug or have a feature request? Feel free to [open an issue](https://github.com/derhermann/BeyondMarkdown/issues) on GitHub. We appreciate your feedback and contributions to make BeyondMarkdown even better!
+Encountered a bug or have a feature request? Feel free to [open an issue](https://github.com/Orbytale/BeyondMarkdown/issues) on GitHub. We appreciate your feedback and contributions to make BeyondMarkdown even better!
 
 ## License
 
