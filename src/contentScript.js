@@ -20,12 +20,21 @@ if (!existingStyles) {
     document.head.appendChild(otStyle);
 }
 
+
 /**
- * The function sets up a mutation observer to watch for changes in the DOM subtree of an element with
- * the class "ddbc-tab-list" and calls the handleMutations function when mutations occur.
+ * Sets up a mutation observer to monitor changes in the DOM.
+ * If the target node exists, it selects the node that will be observed for mutations (Desktop view).
+ * If the target node doesn't exist, it selects the node that will be observed for mutations (Mobile view).
+ * If a target node is found, it creates a MutationObserver and starts observing the target node for mutations.
  */
 function setUpObserver() {
+    // Select the node that will be observed for mutations (Desktop view)
     var targetNode = document.querySelector('.ddbc-tab-list');
+
+    // If the target node doesn't exist, select the node that will be observed for mutations (Mobile view)
+    if (!targetNode) {
+        targetNode = document.querySelector('.ct-component-carousel');
+    }
 
     if (targetNode) {
         var observer = new MutationObserver(handleMutations);
