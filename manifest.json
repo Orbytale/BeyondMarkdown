@@ -1,13 +1,14 @@
 {
   "manifest_version": 3,
   "name": "BeyondMarkdown",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Enhance your D&D Beyond experience by seamlessly converting markdown in character and encounter notes into formatted HTML.",
   "content_scripts": [
     {
       "matches": [
         "*://www.dndbeyond.com/characters/*",
-        "*://www.dndbeyond.com/encounters/*"
+        "*://www.dndbeyond.com/encounters/*",
+        "*://www.dndbeyond.com/combat-tracker/*"
       ],
       "js": [
         "src/showdown.min.js",
