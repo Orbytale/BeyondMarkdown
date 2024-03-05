@@ -20,7 +20,7 @@ Welcome to BeyondMarkdown, the Chrome Extension designed to supercharge your D&D
 
 ### Example Formatting of Encounter
 
-![Example Formatting](screenshots/example-encounter-formatting.png "Example Formatting")
+![Example Formatting](screenshots/example-encounter-preformatted.png "Example Formatting")
 
 <a target="_blank" rel="noopener noreferrer" href="/Orbytale/BeyondMarkdown/blob/main/screenshots/example-encounter-formatting.png"><img src="https://github.com/Orbytale/BeyondMarkdown/raw/main/screenshots/example-encounter-formatting.png" alt="Example Formatting" title="Example Formatting" style="max-width: 60%;width: 60%;"></a>
 
