@@ -8,8 +8,6 @@ Welcome to BeyondMarkdown, the Chrome Extension designed to supercharge your D&D
 ## Features
 
 - **Seamless Conversion**: Automatically converts markdown syntax within D&D Beyond character notes, encounter summaries, and descriptions into formatted HTML, making your adventure logs more readable and professionally styled.
-- **Customizable**: Choose to format all content as markdown or only content within specific tags, offering flexibility in how your notes are displayed.
-- **User-Friendly Settings**: Easily adjust your preferences directly from the extension's popup.
 - **Designed for D&D Beyond**: Specifically tailored to work with D&D Beyond character pages and encounter sections, ensuring compatibility and enhancing your documentation process.
 
 ## Screenshots
@@ -26,11 +24,9 @@ Welcome to BeyondMarkdown, the Chrome Extension designed to supercharge your D&D
 
 <a target="_blank" rel="noopener noreferrer" href="/Orbytale/BeyondMarkdown/blob/main/screenshots/example-formatting-tables.png"><img src="https://github.com/Orbytale/BeyondMarkdown/raw/main/screenshots/example-formatting-tables.png" alt="Example Formatting of tables" title="Example Formatting of Tables" style="max-width: 50%;width: 50%;"></a>
 
-### Extension Popup
-
-![Extension Popup](screenshots/extension-popup.png "Extension Popup")
-
 ## Installation
+
+### Google Chrome
 
 1. **Download the Extension**: Clone this repository or download it as a ZIP file and unpack it.
 2. **Open Chrome Extensions**: Navigate to `chrome://extensions/` in your Chrome browser.
@@ -38,20 +34,19 @@ Welcome to BeyondMarkdown, the Chrome Extension designed to supercharge your D&D
 4. **Load Unpacked Extension**: Click the "Load unpacked" button and select the directory where you extracted BeyondMarkdown.
 5. **Enjoy**: Visit D&D Beyond, navigate to your character notes, and start using markdown!
 
-## How to Use
+### Firefox
 
-- **For All Content**: Simply start writing in markdown within your character or encounter notes. BeyondMarkdown will automatically convert your markdown syntax into HTML.
-- **For Content Inside Tags Only**: Wrap the markdown you want to convert in `[ot-markdown]...[/ot-markdown]` tags. Adjust the tag via the extension's settings if needed.
+1. **Download the Extension**: Clone this repository or download it as a ZIP file and unpack it.
+2. **Open Firefox Add-ons**: Navigate to `about:addons` in your Firefox browser.
+3. **Enable Debug Add-ons**: Click the gear icon in the top-right corner and select "Debug Add-ons".
+4. **Load Temporary Add-on**: Click the "Load Temporary Add-on" button and select the `manifest.json` file from the directory where you extracted BeyondMarkdown.
+5. **Go to D&D Beyond**: Visit D&D Beyond, right-click the BeyondMarkdown icon in your browser's extension area, and select "Always Allow on www.dndbeyond.com".
+6. **Enjoy**: Navigate to your character notes and start using markdown!
 
-### Adjusting Settings
+## Known Issues
 
-Click on the BeyondMarkdown icon in your browser's extension area to access settings:
-- Choose between formatting all content or only content within custom tags.
-- Specify a custom tag if you're using the tag-specific formatting option.
-
-## Custom Tag Configuration
-
-When selecting to format content inside specific tags, you can define your custom tag in the extension's popup settings. This tag will be used to identify the markdown content that should be converted.
+- **Character Notes**: The extension may not format markdown in character notes if the page is not fully loaded. If you encounter this issue, simply refresh the page to ensure the extension can format your notes.
+Sometimes it also helps to switch the content tabs (e.g. from "Description" to "Notes" and back) to trigger the formatting.
 
 ## Support
 

@@ -8,7 +8,7 @@ var showdown = new showdown.Converter(
         emoji: true,
         requireSpaceBeforeHeadingText: true,
         simpleLineBreaks: true,
-    
+
     }
 );
 
@@ -125,29 +125,12 @@ function handleMutations(mutations, observer) {
  * content you want to convert.
  */
 function convertNotesContent(container) {
-    chrome.storage.sync.get(['formattingStyle', 'customTag'], function (data) {
-        const formatStyle = data.formattingStyle || 'tags'; // Default to 'tags'
-        const customTag = data.customTag || 'ot-markdown'; // Default tag
-        const tagRegex = new RegExp(`\\[${customTag}\\](.*?)\\[\\/${customTag}\\]`, 's'); // Dynamic regex based on customTag
-
-        container.querySelectorAll('.ct-notes__note').forEach(element => {
-            if (formatStyle === 'tags') {
-                // format only content with the custom tags
-                var markdownText = element.innerText.match(tagRegex);
-                if (markdownText && markdownText.length > 1) {
-                    var htmlContent = showdown.makeHtml(markdownText[1]);
-                    element.innerHTML = htmlContent;
-                    element.classList.add('ot-beyondmarkdown-replaced');
-                    element.style.whiteSpace = 'normal';
-                }
-            } else {
-                // format all content in .ct-notes__note elements
-                var htmlContent = showdown.makeHtml(element.innerText);
-                element.innerHTML = htmlContent;
-                element.classList.add('ot-beyondmarkdown-replaced');
-                element.style.whiteSpace = 'normal';
-            }
-        });
+    container.querySelectorAll('.ct-notes__note').forEach(element => {
+        // format all content in .ct-notes__note elements
+        var htmlContent = showdown.makeHtml(element.innerText);
+        element.innerHTML = htmlContent;
+        element.classList.add('ot-beyondmarkdown-replaced');
+        element.style.whiteSpace = 'normal';
     });
 }
 
@@ -157,31 +140,14 @@ function convertNotesContent(container) {
  * specified formatting style and custom tag.
  */
 function convertEncounterContent() {
-    chrome.storage.sync.get(['formattingStyle', 'customTag'], function (data) {
-        const formatStyle = data.formattingStyle || 'tags'; // Default to 'tags'
-        const customTag = data.customTag || 'ot-markdown'; // Default tag
-        const tagRegex = new RegExp(`\\[${customTag}\\](.*?)\\[\\/${customTag}\\]`, 's'); // Dynamic regex based on customTag
-
-        // convert all content in all .encounter-details-content-section__content elements
-        var encounterContent = document.querySelectorAll('.encounter-details-content-section__content');
-        encounterContent.forEach(element => {
-            if (formatStyle === 'tags') {
-                // format only content with the custom tags
-                var markdownText = element.innerText.match(tagRegex);
-                if (markdownText && markdownText.length > 1) {
-                    var htmlContent = showdown.makeHtml(markdownText[1]);
-                    element.innerHTML = htmlContent;
-                    element.classList.add('ot-beyondmarkdown-replaced');
-                    element.style.whiteSpace = 'normal';
-                }
-            } else {
-                // format all content in .encounter-details-content-section__content elements
-                var htmlContent = showdown.makeHtml(element.innerText);
-                element.innerHTML = htmlContent;
-                element.classList.add('ot-beyondmarkdown-replaced');
-                element.style.whiteSpace = 'normal';
-            }
-        });
+    // convert all content in all .encounter-details-content-section__content elements
+    var encounterContent = document.querySelectorAll('.encounter-details-content-section__content');
+    encounterContent.forEach(element => {
+        // format all content in .encounter-details-content-section__content elements
+        var htmlContent = showdown.makeHtml(element.innerText);
+        element.innerHTML = htmlContent;
+        element.classList.add('ot-beyondmarkdown-replaced');
+        element.style.whiteSpace = 'normal';
     });
 }
 
