@@ -2,7 +2,8 @@
 
 Welcome to BeyondMarkdown, the Chrome Extension designed to supercharge your D&D Beyond adventure logging. By transforming markdown in character and encounter notes descriptions into beautifully formatted HTML, BeyondMarkdown elevates your note-taking to new heights. This means more time for adventure crafting and less fuss over formatting.
 
-**New Markdown Features Powered by ShowdownJS:** We've integrated [ShowdownJS](https://github.com/showdownjs/showdown) version 2.1.0 to expand our markdown capabilities. Now, you can enrich your notes with tables, checklists, and embrace the full spectrum of markdown syntax. This upgrade ensures your documentation is not only more expressive but also visually appealing.
+> [!NOTE]
+> **New Markdown Features Powered by ShowdownJS:** We've integrated [ShowdownJS](https://github.com/showdownjs/showdown) version 2.1.0 to expand our markdown capabilities. Now, you can enrich your notes with tables, checklists, and embrace the full spectrum of markdown syntax. This upgrade ensures your documentation is not only more expressive but also visually appealing.
 
 ## Features
 
