@@ -45,7 +45,7 @@ function setUpObserver() {
 
 /**
  * The function `handleMutations` takes in a list of mutations and an observer, and it checks if any
- * added nodes or their children match a specific criteria, and if so, it calls the `convertContent`
+ * added nodes or their children match a specific criteria, and if so, it calls the `convertNotesContent`
  * function on the parent node to handle its entire subtree.
  * @param mutations - The `mutations` parameter is an array of MutationRecord objects. Each
  * MutationRecord object represents a single mutation that occurred in the observed DOM. The array
@@ -62,7 +62,7 @@ function handleMutations(mutations, observer) {
                 if (node.nodeType === 1) { // Checks if it's an element node
                     // If the node itself matches the criteria or contains children that do
                     if (node.matches('.ct-notes__note') || node.querySelector('.ct-notes__note')) {
-                        convertContent(node); // Call convertContent on the parent node to handle its entire subtree
+                        convertNotesContent(node); // Call convertNotesContent on the parent node to handle its entire subtree
                     }
                 }
             });
@@ -77,15 +77,21 @@ function handleMutations(mutations, observer) {
  * want to convert to HTML.
  * @returns The function `convertMarkdownToHTML` returns the converted HTML string from the given
  * markdown input.
+ * Supported Markdown syntax:
+ * - Headers: #, ##, and ###
+ * - Unordered lists: -
+ * - Bold: **text**
+ * - Italics: *text*
+ * - Paragraphs: Regular text
  */
 function convertMarkdownToHTML(markdown) {
-    markdown = markdown.replace(/^### (.*$)/gim, '<h3>$1</h3>')
-        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-        .replace(/^\- (.*$)/gim, '<ul><li>$1</li></ul>')
-        .replace(/<\/ul>\n<ul>/gim, '')
-        .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>') // Make non-greedy
-        .replace(/\*(.*?)\*/gim, '<em>$1</em>') // Make non-greedy
+    markdown = markdown.replace(/^### (.*$)/gim, '<h3>$1</h3>') // Header 3
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>') // Header 2
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>') // Header 1
+        .replace(/^\- (.*$)/gim, '<ul><li>$1</li></ul>') // Unordered list
+        .replace(/<\/ul>\n<ul>/gim, '') // Remove extra ul tags
+        .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>') // Bold
+        .replace(/\*(.*?)\*/gim, '<em>$1</em>') // Italics
         .split('\n').map(line => {
             if (line.match(/^(<h1>|<h2>|<h3>|<ul>|<li>|<strong>|<em>)/)) {
                 return line;
@@ -98,13 +104,13 @@ function convertMarkdownToHTML(markdown) {
 
 
 /**
- * The `convertContent` function converts content within a specified container from Markdown format to
+ * The `convertNotesContent` function converts content within a specified container from Markdown format to
  * HTML format, based on the specified formatting style and custom tag.
  * @param container - The `container` parameter is the DOM element that contains the content you want
  * to convert. It is expected to be a valid DOM element, such as a div or a section, that contains the
  * content you want to convert.
  */
-function convertContent(container) {
+function convertNotesContent(container) {
     chrome.storage.sync.get(['formattingStyle', 'customTag'], function (data) {
         const formatStyle = data.formattingStyle || 'tags'; // Default to 'tags'
         const customTag = data.customTag || 'ot-markdown'; // Default tag
@@ -129,8 +135,63 @@ function convertContent(container) {
     });
 }
 
+// function to convert the content of the Encounter page to HTML
+// element: .encounter-details-content-section__content
+function convertEncounterContent() {
+    chrome.storage.sync.get(['formattingStyle', 'customTag'], function (data) {
+        const formatStyle = data.formattingStyle || 'tags'; // Default to 'tags'
+        const customTag = data.customTag || 'ot-markdown'; // Default tag
+        const tagRegex = new RegExp(`\\[${customTag}\\](.*?)\\[\\/${customTag}\\]`, 's'); // Dynamic regex based on customTag
+
+        // convert all content in all .encounter-details-content-section__content elements
+        var encounterContent = document.querySelectorAll('.encounter-details-content-section__content');
+        encounterContent.forEach(element => {
+            if (formatStyle === 'tags') {
+                // format only content with the custom tags
+                var markdownText = element.innerText.match(tagRegex);
+                if (markdownText && markdownText.length > 1) {
+                    var htmlContent = convertMarkdownToHTML(markdownText[1]);
+                    element.innerHTML = htmlContent;
+                    element.classList.add('ot-beyondmarkdown-replaced');
+                }
+            } else {
+                // format all content in .encounter-details-content-section__content elements
+                var htmlContent = convertMarkdownToHTML(element.innerText);
+                element.innerHTML = htmlContent;
+                element.classList.add('ot-beyondmarkdown-replaced');
+            }
+        });
+    });
+}
+
+
+// can we add a functionality, where the code waits for .encounter-details-content-section__content to be present,
+// and then convert the content to HTML?
+// If the .encounter-details-content-section__content is not present, then the code should wait for it to be present
+// and then convert the content to HTML.
+
+function waitForElementToDisplay(selector, time) {
+    if (document.querySelector(selector) != null) {
+        // convertEncounterContent();
+        console.log('Element is displayed, converting content to HTML');
+        convertEncounterContent();
+        return;
+    } else {
+        console.log('Element is not displayed yet, waiting for it to be displayed');
+        setTimeout(function () {
+            waitForElementToDisplay(selector, time);
+        }, time);
+    }
+}
+
 
 window.onload = function () {
     // Set a timeout if you want an additional delay
-    setTimeout(setUpObserver, 3000);
+    setTimeout(function () {
+        setUpObserver();
+        // if the url is an encounter page, then convert the content to HTML
+        if (window.location.href.includes('encounters')) {
+            waitForElementToDisplay('.encounter-details-content-section__content', 1000);
+        }
+    }, 3000);
 };
