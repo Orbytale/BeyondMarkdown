@@ -4,8 +4,6 @@
   "version": "0.2.0",
   "description": "Enhance your D&D Beyond experience by seamlessly converting markdown in character and encounter notes into formatted HTML.",
   "permissions": [
-    "activeTab",
-    "scripting",
     "storage"
   ],
   "content_scripts": [
