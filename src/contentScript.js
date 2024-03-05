@@ -181,7 +181,7 @@ window.onload = function () {
     setTimeout(function () {
         setUpObserver();
         // if the url is an encounter page, then convert the content to HTML
-        if (window.location.href.includes('encounters')) {
+        if (window.location.href.includes('encounters') || window.location.href.includes('combat-tracker')) {
             waitForElementToDisplay('.encounter-details-content-section__content', 1000);
         }
     }, 3000);
