@@ -1,6 +1,8 @@
 # BeyondMarkdown
 
-Welcome to BeyondMarkdown, a Chrome Extension designed to enhance your D&D Beyond experience by seamlessly converting markdown in character notes, encounter summaries, and descriptions into beautifully formatted HTML. This extension broadens the scope of your note-taking capabilities, making the documentation of your adventures more efficient and visually engaging, allowing you to focus on crafting your adventure without worrying about formatting.
+Welcome to BeyondMarkdown, the Chrome Extension designed to supercharge your D&D Beyond adventure logging. By transforming markdown in character and encounter notes descriptions into beautifully formatted HTML, BeyondMarkdown elevates your note-taking to new heights. This means more time for adventure crafting and less fuss over formatting.
+
+**New Markdown Features Powered by ShowdownJS:** We've integrated [ShowdownJS](https://github.com/showdownjs/showdown) version 2.1.0 to expand our markdown capabilities. Now, you can enrich your notes with tables, checklists, and embrace the full spectrum of markdown syntax. This upgrade ensures your documentation is not only more expressive but also visually appealing.
 
 ## Features
 
@@ -8,41 +10,6 @@ Welcome to BeyondMarkdown, a Chrome Extension designed to enhance your D&D Beyon
 - **Customizable**: Choose to format all content as markdown or only content within specific tags, offering flexibility in how your notes are displayed.
 - **User-Friendly Settings**: Easily adjust your preferences directly from the extension's popup.
 - **Designed for D&D Beyond**: Specifically tailored to work with D&D Beyond character pages and encounter sections, ensuring compatibility and enhancing your documentation process.
-
-## Supported Markdown Syntax
-
-Here's a quick guide to the markdown formatting you can use:
-
-### Headers
-
-Create headers by prefixing your text with #, ##, or ### for different levels of headings.
-
-```markdown
-# Header 1
-## Header 2
-### Header 3
-```
-
-### Emphasis
-
-Emphasize text using * for italics and ** for bold.
-
-- *italic* for italic text
-- **bold** for bold text
-
-``` markdown
-*italic* and **bold**
-```
-
-### Lists
-
-Organize your information with bullet lists using -.
-
-```markdown
-- Item 1
-- Item 2
-- Item 3
-```
 
 ## Screenshots
 
@@ -54,6 +21,7 @@ Organize your information with bullet lists using -.
 
 ![Example Formatting](screenshots/example-encounter-formatting.png "Example Formatting")
 ![Example Formatting (before formatting)](screenshots/example-encounter-preformatted.png "Example Formatting (before formatting)")
+![Example Formatting of tables](screenshots/example-formatting-tables.png "Example Formatting of Tables")
 
 ### Extension Popup
 
@@ -69,7 +37,7 @@ Organize your information with bullet lists using -.
 
 ## How to Use
 
-- **For All Content**: Simply start writing in markdown within your character notes. BeyondMarkdown will automatically convert your markdown syntax into HTML.
+- **For All Content**: Simply start writing in markdown within your character or encounter notes. BeyondMarkdown will automatically convert your markdown syntax into HTML.
 - **For Content Inside Tags Only**: Wrap the markdown you want to convert in `[ot-markdown]...[/ot-markdown]` tags. Adjust the tag via the extension's settings if needed.
 
 ### Adjusting Settings
