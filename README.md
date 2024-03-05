@@ -21,8 +21,10 @@ Welcome to BeyondMarkdown, the Chrome Extension designed to supercharge your D&D
 ### Example Formatting of Encounter
 
 ![Example Formatting](screenshots/example-encounter-formatting.png "Example Formatting")
-![Example Formatting (before formatting)](screenshots/example-encounter-preformatted.png "Example Formatting (before formatting)")
-<a target="_blank" rel="noopener noreferrer" href="/Orbytale/BeyondMarkdown/blob/main/screenshots/example-formatting-tables.png"><img src="https://github.com/Orbytale/BeyondMarkdown/raw/main/screenshots/example-formatting-tables.png" alt="Example Formatting of tables" title="Example Formatting of Tables" style="max-width: 100%;width: 50%;"></a>
+
+<a target="_blank" rel="noopener noreferrer" href="/Orbytale/BeyondMarkdown/blob/main/screenshots/example-encounter-formatting.png"><img src="https://github.com/Orbytale/BeyondMarkdown/raw/main/screenshots/example-encounter-formatting.png" alt="Example Formatting" title="Example Formatting" style="max-width: 60%;width: 60%;"></a>
+
+<a target="_blank" rel="noopener noreferrer" href="/Orbytale/BeyondMarkdown/blob/main/screenshots/example-formatting-tables.png"><img src="https://github.com/Orbytale/BeyondMarkdown/raw/main/screenshots/example-formatting-tables.png" alt="Example Formatting of tables" title="Example Formatting of Tables" style="max-width: 50%;width: 50%;"></a>
 
 ### Extension Popup
 
