@@ -1,3 +1,17 @@
+var showdown = new showdown.Converter(
+    {
+        simplifiedAutoLink: true,
+        strikethrough: true,
+        tables: true,
+        tasklists: true,
+        openLinksInNewWindow: true,
+        emoji: true,
+        requireSpaceBeforeHeadingText: true,
+        simpleLineBreaks: true,
+    
+    }
+);
+
 // Check if the specific style already exists
 var existingStyles = [...document.head.querySelectorAll('style')].some(style => style.textContent.includes('.ot-beyondmarkdown-replaced ul'));
 
@@ -5,17 +19,50 @@ var existingStyles = [...document.head.querySelectorAll('style')].some(style => 
 if (!existingStyles) {
     var otStyle = document.createElement('style');
     otStyle.textContent = `
-        h1, h2, h3 { margin-top: 0; }
-        p { margin-top: 0; }
-        .ot-beyondmarkdown-replaced ul {
-            list-style-type: disc;
-            margin-block-start: 1em;
-            margin-block-end: 1em;
-            padding-inline-start: 40px;
-        }
-        .ot-beyondmarkdown-replaced li {
-            margin-bottom: 0.5em;
-        }
+    .ot-beyondmarkdown-replaced h1,
+    .ot-beyondmarkdown-replaced h2,
+    .ot-beyondmarkdown-replaced h3,
+    .ot-beyondmarkdown-replaced ul,
+    .ot-beyondmarkdown-replaced li,
+    .ot-beyondmarkdown-replaced p {
+        line-height: 1.4; /* Adjust vertical spacing */
+    }
+    .ot-beyondmarkdown-replaced ul {
+        list-style-type: disc;
+        padding-inline-start: 40px;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .ot-beyondmarkdown-replaced li {
+        margin-bottom: 0.5em;
+    }
+
+    .ot-beyondmarkdown-replaced table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .ot-beyondmarkdown-replaced th,
+    .ot-beyondmarkdown-replaced td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .ot-beyondmarkdown-replaced th {
+        background-color: #f2f2f2;
+    }
+
+    .ot-beyondmarkdown-replaced tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .ot-beyondmarkdown-replaced th {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     `;
     document.head.appendChild(otStyle);
 }
@@ -70,39 +117,6 @@ function handleMutations(mutations, observer) {
     });
 }
 
-
-/**
- * The `convertMarkdownToHTML` function converts Markdown text into HTML markup.
- * @param markdown - The `markdown` parameter is a string that represents the markdown content that you
- * want to convert to HTML.
- * @returns The function `convertMarkdownToHTML` returns the converted HTML string from the given
- * markdown input.
- * Supported Markdown syntax:
- * - Headers: #, ##, and ###
- * - Unordered lists: -
- * - Bold: **text**
- * - Italics: *text*
- * - Paragraphs: Regular text
- */
-function convertMarkdownToHTML(markdown) {
-    markdown = markdown.replace(/^### (.*$)/gim, '<h3>$1</h3>') // Header 3
-        .replace(/^## (.*$)/gim, '<h2>$1</h2>') // Header 2
-        .replace(/^# (.*$)/gim, '<h1>$1</h1>') // Header 1
-        .replace(/^\- (.*$)/gim, '<ul><li>$1</li></ul>') // Unordered list
-        .replace(/<\/ul>\n<ul>/gim, '') // Remove extra ul tags
-        .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>') // Bold
-        .replace(/\*(.*?)\*/gim, '<em>$1</em>') // Italics
-        .split('\n').map(line => {
-            if (line.match(/^(<h1>|<h2>|<h3>|<ul>|<li>|<strong>|<em>)/)) {
-                return line;
-            } else {
-                return `<p>${line}</p>`;
-            }
-        }).join('');
-    return markdown.trim();
-}
-
-
 /**
  * The `convertNotesContent` function converts content within a specified container from Markdown format to
  * HTML format, based on the specified formatting style and custom tag.
@@ -121,22 +135,27 @@ function convertNotesContent(container) {
                 // format only content with the custom tags
                 var markdownText = element.innerText.match(tagRegex);
                 if (markdownText && markdownText.length > 1) {
-                    var htmlContent = convertMarkdownToHTML(markdownText[1]);
+                    var htmlContent = showdown.makeHtml(markdownText[1]);
                     element.innerHTML = htmlContent;
                     element.classList.add('ot-beyondmarkdown-replaced');
+                    element.style.whiteSpace = 'normal';
                 }
             } else {
                 // format all content in .ct-notes__note elements
-                var htmlContent = convertMarkdownToHTML(element.innerText);
+                var htmlContent = showdown.makeHtml(element.innerText);
                 element.innerHTML = htmlContent;
                 element.classList.add('ot-beyondmarkdown-replaced');
+                element.style.whiteSpace = 'normal';
             }
         });
     });
 }
 
-// function to convert the content of the Encounter page to HTML
-// element: .encounter-details-content-section__content
+
+/**
+ * The function `convertEncounterContent` converts content within specific elements based on a
+ * specified formatting style and custom tag.
+ */
 function convertEncounterContent() {
     chrome.storage.sync.get(['formattingStyle', 'customTag'], function (data) {
         const formatStyle = data.formattingStyle || 'tags'; // Default to 'tags'
@@ -150,34 +169,40 @@ function convertEncounterContent() {
                 // format only content with the custom tags
                 var markdownText = element.innerText.match(tagRegex);
                 if (markdownText && markdownText.length > 1) {
-                    var htmlContent = convertMarkdownToHTML(markdownText[1]);
+                    var htmlContent = showdown.makeHtml(markdownText[1]);
                     element.innerHTML = htmlContent;
                     element.classList.add('ot-beyondmarkdown-replaced');
+                    element.style.whiteSpace = 'normal';
                 }
             } else {
                 // format all content in .encounter-details-content-section__content elements
-                var htmlContent = convertMarkdownToHTML(element.innerText);
+                var htmlContent = showdown.makeHtml(element.innerText);
                 element.innerHTML = htmlContent;
                 element.classList.add('ot-beyondmarkdown-replaced');
+                element.style.whiteSpace = 'normal';
             }
         });
     });
 }
 
 
-// can we add a functionality, where the code waits for .encounter-details-content-section__content to be present,
-// and then convert the content to HTML?
-// If the .encounter-details-content-section__content is not present, then the code should wait for it to be present
-// and then convert the content to HTML.
-
+/**
+ * The function `waitForElementToDisplay` waits for a specified element to be displayed on the webpage
+ * before executing a specific action.
+ * @param selector - The `selector` parameter in the `waitForElementToDisplay` function is a CSS
+ * selector that specifies the element you are waiting to display on the webpage. It could be a class,
+ * id, tag name, or any other valid CSS selector that targets the element you are interested in.
+ * @param time - The `time` parameter in the `waitForElementToDisplay` function represents the duration
+ * in milliseconds for which the function will wait before checking again if the specified element is
+ * displayed on the page. This parameter determines the interval at which the function will recheck for
+ * the element until it is found.
+ * @returns The function `waitForElementToDisplay` is returning `undefined`.
+ */
 function waitForElementToDisplay(selector, time) {
     if (document.querySelector(selector) != null) {
-        // convertEncounterContent();
-        console.log('Element is displayed, converting content to HTML');
         convertEncounterContent();
         return;
     } else {
-        console.log('Element is not displayed yet, waiting for it to be displayed');
         setTimeout(function () {
             waitForElementToDisplay(selector, time);
         }, time);
