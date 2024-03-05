@@ -1,13 +1,13 @@
 # BeyondMarkdown
 
-Welcome to BeyondMarkdown, a Chrome Extension designed to enhance your D&D Beyond experience by seamlessly converting markdown in character notes into beautifully formatted HTML. This extension makes note-taking more efficient and readable, allowing you to focus on crafting your adventure without worrying about formatting.
+Welcome to BeyondMarkdown, a Chrome Extension designed to enhance your D&D Beyond experience by seamlessly converting markdown in character notes, encounter summaries, and descriptions into beautifully formatted HTML. This extension broadens the scope of your note-taking capabilities, making the documentation of your adventures more efficient and visually engaging, allowing you to focus on crafting your adventure without worrying about formatting.
 
 ## Features
 
-- **Seamless Conversion**: Automatically converts markdown syntax within D&D Beyond character notes into formatted HTML.
+- **Seamless Conversion**: Automatically converts markdown syntax within D&D Beyond character notes, encounter summaries, and descriptions into formatted HTML, making your adventure logs more readable and professionally styled.
 - **Customizable**: Choose to format all content as markdown or only content within specific tags, offering flexibility in how your notes are displayed.
 - **User-Friendly Settings**: Easily adjust your preferences directly from the extension's popup.
-- **Designed for D&D Beyond**: Specifically tailored to work with D&D Beyond character pages.
+- **Designed for D&D Beyond**: Specifically tailored to work with D&D Beyond character pages and encounter sections, ensuring compatibility and enhancing your documentation process.
 
 ## Supported Markdown Syntax
 
@@ -46,9 +46,14 @@ Organize your information with bullet lists using -.
 
 ## Screenshots
 
-### Example Formatting
+### Example Formatting of Character Notes
 
 ![Example Formatting](screenshots/example-formatting.png "Example Formatting")
+
+### Example Formatting of Encounter
+
+![Example Formatting](screenshots/example-encounter-formatting.png "Example Formatting")
+![Example Formatting (before formatting)](screenshots/example-encounter-preformatted.png "Example Formatting (before formatting)")
 
 ### Extension Popup
 
