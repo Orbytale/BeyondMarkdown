@@ -11,7 +11,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://www.dndbeyond.com/characters/*"
+        "*://www.dndbeyond.com/characters/*",
+        "*://www.dndbeyond.com/encounters/*"
       ],
       "js": [
         "src/contentScript.js"
