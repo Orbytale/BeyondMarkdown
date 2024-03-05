@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "BeyondMarkdown",
   "version": "0.2.0",
-  "description": "Enhance your D&D Beyond experience by seamlessly converting markdown in character notes into beautifully formatted HTML, making note-taking more efficient and readable.",
+  "description": "Enhance your D&D Beyond experience by seamlessly converting markdown in character and encounter notes into beautifully formatted HTML, making note-taking more efficient and readable.",
   "permissions": [
     "activeTab",
     "scripting",
