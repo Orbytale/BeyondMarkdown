@@ -28,6 +28,11 @@ Welcome to BeyondMarkdown, the Chrome Extension designed to supercharge your D&D
 
 ### Google Chrome
 
+#### Chrome Web Store
+1. **Install the Extension**: Visit the [BeyondMarkdown page on the Chrome Web Store](https://chromewebstore.google.com/detail/beyondmarkdown/cpbjoglkmeljgecbabdkphliohhbebac) and click the "Add to Chrome" button.
+2. **Enjoy**: Visit D&D Beyond, navigate to your character notes, and start using markdown!
+
+#### Manual Installation
 1. **Download the Extension**: Clone this repository or download it as a ZIP file and unpack it.
 2. **Open Chrome Extensions**: Navigate to `chrome://extensions/` in your Chrome browser.
 3. **Enable Developer Mode**: Find the toggle switch in the top-right corner of the extensions page and ensure Developer Mode is turned on.
@@ -35,6 +40,8 @@ Welcome to BeyondMarkdown, the Chrome Extension designed to supercharge your D&D
 5. **Enjoy**: Visit D&D Beyond, navigate to your character notes, and start using markdown!
 
 ### Firefox
+
+#### Manual Installation
 
 1. **Download the Extension**: Clone this repository or download it as a ZIP file and unpack it.
 2. **Open Firefox Add-ons**: Navigate to `about:addons` in your Firefox browser.
