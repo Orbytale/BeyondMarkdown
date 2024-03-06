@@ -43,6 +43,14 @@ Welcome to BeyondMarkdown, the Chrome Extension designed to supercharge your D&D
 5. **Go to D&D Beyond**: Visit D&D Beyond, right-click the BeyondMarkdown icon in your browser's extension area, and select "Always Allow on www.dndbeyond.com".
 6. **Enjoy**: Navigate to your character notes and start using markdown!
 
+### Microsoft Edge
+
+1. **Download the Extension**: Clone this repository or download it as a ZIP file and unpack it.
+2. **Open Edge Extensions**: Navigate to `edge://extensions/` in your Edge browser.
+3. **Enable Developer Mode**: Find the toggle switch in the bottom-left corner of the extensions page and ensure Developer Mode is turned on.
+4. **Load Unpacked Extension**: Click the "Load unpacked" button and select the directory where you extracted BeyondMarkdown.
+5. **Enjoy**: Visit D&D Beyond, navigate to your character notes, and start using markdown!
+
 ## Known Issues
 
 - **Character Notes**: The extension may not format markdown in character notes if the page is not fully loaded. If you encounter this issue, simply refresh the page to ensure the extension can format your notes.
