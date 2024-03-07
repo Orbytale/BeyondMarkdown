@@ -51,11 +51,11 @@ if (!existingStyles) {
     }
 
     .ot-beyondmarkdown-replaced th {
-        background-color: #f2f2f2;
+        background-color: #e6dfbd;
     }
 
     .ot-beyondmarkdown-replaced tr:nth-child(even) {
-        background-color: #f2f2f2;
+        background-color: #e6dfbd;
     }
 
     .ot-beyondmarkdown-replaced th {
@@ -151,6 +151,22 @@ function convertEncounterContent() {
     });
 }
 
+// function to look for the encounter content, find any mention of "<p>!vanilla</p>" at the beginning of
+// ".encounter-details-content-section__content .ot-beyondmarkdown-replaced" and add the class ".mon-stat-block"
+// to the parent element and set its css column-count and -webkit-column-count to 1.
+// then the function removes the "<p>!vanilla</p>" from the content.
+function vanillaEncounterContent() {
+    var encounterContent = document.querySelectorAll('.encounter-details-content-section__content');
+    encounterContent.forEach(element => {
+        if (element.innerHTML.includes('<p>!vanilla</p>')) {
+            element.parentElement.classList.add('mon-stat-block');
+            element.parentElement.style.columnCount = 1;
+            element.parentElement.style.webkitColumnCount = 1;
+            element.innerHTML = element.innerHTML.replace('<p>!vanilla</p>', '');
+        }
+    });
+}
+
 
 /**
  * The function `waitForElementToDisplay` waits for a specified element to be displayed on the webpage
@@ -167,6 +183,7 @@ function convertEncounterContent() {
 function waitForElementToDisplay(selector, time) {
     if (document.querySelector(selector) != null) {
         convertEncounterContent();
+        vanillaEncounterContent();
         return;
     } else {
         setTimeout(function () {

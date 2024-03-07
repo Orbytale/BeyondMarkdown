@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "BeyondMarkdown",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "description": "Enhance your D&D Beyond experience by seamlessly converting markdown in character and encounter notes into formatted HTML.",
   "content_scripts": [
     {
